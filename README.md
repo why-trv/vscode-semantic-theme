@@ -12,3 +12,4 @@ I have yet to test this with any other languages (JavaScript, CSS, HTML, Markdow
 - Differentiate local variables, member variables and funciton arguments if possible (maybe make globals stand out as well?)
 - Try to avoid making all keywords, casts etc. a big purple mess
 - Obviously, macros should be easily distinguishable (maybe differentiate macros definitions from 'calls' as well?)
+- Could be great if we'll be able to differentiate between e.g. `const` and non-`const` methods e.g. using italics (doesn't seem to be possible as of now)

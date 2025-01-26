@@ -160,7 +160,7 @@
         "markup.changed.git_gutter"
       ],
       "settings": {
-        "foreground": "#e0b872"
+        "foreground": "#e0b569"
       }
     },
     {
@@ -171,7 +171,17 @@
         "entity.name.type.typedef"
       ],
       "settings": {
-        "foreground": "#e0b872"
+        "foreground": "#e0b569",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Class Template Instantiation?",
+      "scope": [
+        "entity.name.type.class.templated"
+      ],
+      "settings": {
+        "fontStyle": ""
       }
     },
     {
@@ -215,6 +225,15 @@
       "settings": {
         "foreground": "#61AFEF",
         "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Static Function",
+      "scope": [
+        "entity.name.function.member.static"
+      ],
+      "settings": {
+        "fontStyle": "bold italic"
       }
     },
     {

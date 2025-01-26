@@ -15,16 +15,16 @@ const colors: ThemeColors = {
   misc: "#4cadd3",
   operator: "#97c8ef",
   cast: "#4f799a",
-  string: "#c1e88d",  
+  string: "#c1e88d",
   number: "#f9a167",
-  class: "#e0b872",
+  class: "#e0b569",
   namespacePrefix: "#ccb87a",
   lambdaReturnType: "#c2a880",
   function: "#61AFEF",
   specialFunction: "#8AA4F1",
   macro: "#3da779",
   invalid: "#FF5370",
-  tag: "#f07178",  
+  tag: "#f07178",
   memberVariable: "#f0787f",
   argument: "#cacaca",
   tsPrimitive: "#3da779"
@@ -160,13 +160,19 @@ const theme: Theme = {
       ],
     ],
     [
-      "Class, Struct, Type Declaration", colors.class, //"bold",
+      "Class, Struct, Type Declaration", colors.class, "bold",
       [
         "entity.name.type.class",
         "entity.name.type.struct",
         // "entity.name.type.declaration",
         "entity.name.type.typedef"
       ],
+    ],
+    [
+      "Class Template Instantiation?", "",
+      [
+        "entity.name.type.class.templated"
+      ]
     ],
     // TODO: Find a way to differentiate between template declaration and
     // instantiation (and un-bold the latter)
@@ -200,6 +206,12 @@ const theme: Theme = {
       [
         "entity.name.function.definition",
         "keyword.other.operator.overload.cpp"
+      ]
+    ],
+    [
+      "Static Function", "bold italic",
+      [
+        "entity.name.function.member.static"
       ]
     ],
     [
@@ -547,7 +559,7 @@ const theme: Theme = {
         "markup.table"
       ]
     ]
-  ]),    
+  ]),
 };
 
 saveTheme(theme, filename);
