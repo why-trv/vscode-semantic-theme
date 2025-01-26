@@ -176,15 +176,6 @@
       }
     },
     {
-      "name": "Class Template Instantiation?",
-      "scope": [
-        "entity.name.type.class.templated"
-      ],
-      "settings": {
-        "fontStyle": ""
-      }
-    },
-    {
       "name": "Namespace Prefix",
       "scope": [
         "entity.name.scope-resolution"

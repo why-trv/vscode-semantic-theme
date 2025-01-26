@@ -168,12 +168,6 @@ const theme: Theme = {
         "entity.name.type.typedef"
       ],
     ],
-    [
-      "Class Template Instantiation?", "",
-      [
-        "entity.name.type.class.templated"
-      ]
-    ],
     // TODO: Find a way to differentiate between template declaration and
     // instantiation (and un-bold the latter)
     [
