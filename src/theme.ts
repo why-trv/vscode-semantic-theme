@@ -90,15 +90,22 @@ const theme: Theme = {
       ]
     ],
     [
-      "Storage Modifier", colors.keywordModifier,
+      "Storage Modifier, noexcept", colors.keywordModifier,
       [
-        "storage.modifier"
+        "storage.modifier",
+        "keyword.operator.noexcept"
+      ]
+    ],
+    [
+      "Requires Keyword", colors.keyword, "bold",
+      [
+        "keyword.other.requires"
       ]
     ],
     [
       "Control Keywords", colors.control, "bold",
       [
-        "keyword.control",
+        "keyword.control",        
       ]
     ],
     [

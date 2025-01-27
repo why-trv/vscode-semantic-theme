@@ -78,12 +78,23 @@
       }
     },
     {
-      "name": "Storage Modifier",
+      "name": "Storage Modifier, noexcept",
       "scope": [
-        "storage.modifier"
+        "storage.modifier",
+        "keyword.operator.noexcept"
       ],
       "settings": {
         "foreground": "#9c81e1"
+      }
+    },
+    {
+      "name": "Requires Keyword",
+      "scope": [
+        "keyword.other.requires"
+      ],
+      "settings": {
+        "foreground": "#C681E1",
+        "fontStyle": "bold"
       }
     },
     {
