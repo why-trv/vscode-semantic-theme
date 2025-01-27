@@ -2,7 +2,7 @@
   "name": "semantic-theme",
   "displayName": "Semantic Theme",
   "description": "An attempt at a decently semantic VSCode theme for C++",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "Yuri Turov",
   "icon": "icon.png",
   "engines": {
@@ -23,8 +23,8 @@
   "scripts": {
     "build": "tsc && node .out/theme.js",
     "watch": "tsc-watch --onSuccess \"node .out/theme.js\"",
-    "install": "rsync -av --exclude='.*' --exclude='node_modules' --exclude='.out' --exclude='*.vsix' . ~/.vscode/extensions/semantic-theme",
-    "cursor-install": "rsync -av --exclude='.*' --exclude='node_modules' --exclude='.out' --exclude='*.vsix' . ~/.cursor/extensions/semantic-theme"
+    "preinstall": "npm run build",
+    "install": "tsc && node .out/install.js"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
