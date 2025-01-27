@@ -4,6 +4,10 @@ This is an attempt at a VS Code color theme that would offer decent semantic hig
 
 I have yet to test this with any other languages (JavaScript, CSS, HTML, Markdown, etc.)
 
+## Notes
+
+Token scopes differ depending on the language server used (`clangd` or `cpptools`). As of Jan 2025, the former seems to be better in terms of semantic tokens, but for textmate scopes the latter can sometimes be more informative. Overall, it's a bit of a hit and miss for both.
+
 ## Goals / Considerations
 
 - Neutral gray backgrounds to reduce messing with perception of color temperature in app GUIs and graphics

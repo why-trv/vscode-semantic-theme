@@ -1,9 +1,9 @@
 import type { Theme, ThemeColors } from "./types"
-import { createTokens, saveTheme } from "./utils"
+import { createTokens, createSemanticTokens, saveTheme } from "./utils"
 
 // Define color palette
 const colors: ThemeColors = {
-  background: "#1e1e1e",
+  background: "#1d1d1d",
   foreground: "#c4c4c4",
   altForeground: "#cecece",
   comment: "#5c5c5c",
@@ -42,9 +42,18 @@ const theme: Theme = {
     "activityBarBadge.background": "#007acc",
     "sideBarTitle.foreground": "#bbbbbb"
   },
-  semanticTokenColors: {
+  semanticTokenColors: createSemanticTokens({
     "namespace": colors.namespacePrefix,
-  },
+    "macro": colors.macro,
+    "typeParameter": { italic: true },
+    "function.static": { italic: true },
+    "class": [colors.class, ""],
+    "class.declaration": "bold",
+    "class.definition": "bold",
+    "class.constructorOrDestructor": colors.function,
+    "type.defaultLibrary": colors.keyword,
+    "class.deduced": colors.keyword
+  }),
   tokenColors: createTokens([
     [
       "Comment", colors.comment, "italic",
@@ -136,7 +145,7 @@ const theme: Theme = {
       ],
     ],
     [
-      "Primitive Type", colors.altKeyword, "bold",
+      "Primitive Type", colors.altKeyword,
       [
         // "storage.type",
         "storage.type.primitive",

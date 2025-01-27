@@ -7,6 +7,8 @@ import type {
   ScopeDefinition,  
   TokenItem, 
   TokenSettings,
+  SemanticTokenSettings,
+  SemanticTokenColors,
   Theme
 } from "./types";
 
@@ -17,52 +19,85 @@ type TokenDefinition = [
   arg3?: ScopeDefinition
 ];
 
-// type SemanticTokenDefinition = [
-//   scope: string,
-//   arg1: Color | FontStyle,
-//   arg2?: FontStyle,
-// ];
+type SemanticTokenSettingsDefinition = [
+  arg1: Color | FontStyle,
+  arg2?: FontStyle
+];
+type SemanticTokensDefinition = {
+  [scope: string]: SemanticTokenSettingsDefinition | FontStyle | SemanticTokenSettings
+};
 
-// function createSemanticTokens(definitions: SemanticTokenDefinition[]): SemanticTokenColors {
-//   const result: SemanticTokenColors = {};
+function isColor(s: string): s is Color {
+  return typeof s === 'string' && s.startsWith('#');
+}
 
-//   for (const def of definitions) {
-//     const scope = def[0];
+// This function allows declaration of semantic token styles in several ways:
+// - Regular key-value pairs, e.g.:
+//   * { "namespace": "#007acc" }
+//   * { "macro": { foreground: "#007acc", bold: true, italic: false } }
+//   * { "class": { foreground: "#007acc", fontStyle: "bold" } }
+// - Short syntax for font styles, e.g. { "function.static": "italic" }
+// - Short array syntax, e.g. { "class": [ "#007acc", "bold" ] }
+//
+// Note that { fontStyle: "bold" } is going reset the style,
+// while { bold: true } is going to add to existing styles.
+export function createSemanticTokens(
+  definition: SemanticTokensDefinition
+): SemanticTokenColors {
+  const result: SemanticTokenColors = {};
 
-//     let color: Color | undefined;
-//     let fontStyle: FontStyle | undefined;
+  for (let [scope, settings] of Object.entries(definition)) {
+    // Assuming fontStyle, convert to object
+    if (typeof settings === 'string' && !isColor(settings)) {
+      settings = { fontStyle: settings };
+    }
 
-//     // TODO: Color and fontStyle validation
+    if (typeof settings === 'string' 
+       || (typeof settings === 'object' && !Array.isArray(settings))) {      
+      result[scope] = settings as SemanticTokenSettings;
+    } else if (Array.isArray(settings)) {
+      let color: Color | undefined;
+      let fontStyle: FontStyle | undefined;
 
-//     if (def.length >= 4 || def.length <= 1) {
-//       throw new Error(`Unexpected semantic token settings length ${def.length} for "${scope}"`);
-//     } else if (def.length === 3) {
-//       color = def[1] as Color;
-//       fontStyle = def[2] as FontStyle;
-//     } else if (def.length === 2) {
-//       if (def[1].startsWith('#')) {
-//         color = def[1] as Color;
-//       } else {
-//         fontStyle = def[1] as FontStyle;
-//       }
-//     }
+      const s = settings as SemanticTokenSettingsDefinition;
 
-//     let settings: SemanticTokenSettings;
+      // Color is first if present, otherwise it's font style
+      if (s.length === 2) {
+        color = s[0] as Color;
+        fontStyle = s[1] as FontStyle;
+      } else if (s.length === 1) {
+        if (isColor(s[0])) {
+          color = s[0] as Color;
+        } else {
+          fontStyle = s[0] as FontStyle;
+        }
 
-//     if (color && fontStyle !== undefined) {
-//       settings = color;
-//     } else {
-//       settings = {};
-//       if (color !== undefined) { settings.foreground = color; }
-//       if (fontStyle !== undefined) { settings.fontStyle = fontStyle; }
-//     }
+        const settings: SemanticTokenSettings = {};
+        if (color !== undefined) { settings.foreground = color; }
+        if (fontStyle !== undefined) { settings.fontStyle = fontStyle; }
+        result[scope] = settings;
+      } else {
+        throw new Error(`Unexpected semantic token settings length ${s.length} for "${scope}"`);
+      }
+    } else {
+      throw new Error(`Unexpected semantic token settings type ${typeof settings} for "${scope}"`);
+    }
+  }
 
-//     result[scope] = settings;
-//   }
+  return result;
+}
 
-//   return result;
-// }
-
+// Allows definition of token colors using a terser array syntax, e.g.
+// [
+//   ["Comment", "#afafaf, "italic", ["comment", "smth.else"]], 
+//   ["Cast", colors.cast, "keyword.operator.cast"], ...
+// ]
+// instead of the regular
+// [{ 
+//   name: "Comment", 
+//   scope: ["comment", "smth.else"], 
+//   settings: { foreground: "#afafaf", fontStyle: "italic" } 
+// }, ...]
 export function createTokens(definitions: TokenDefinition[]): TokenItem[] {
   return definitions.map((def) => {
     const name = def[0];
@@ -74,7 +109,7 @@ export function createTokens(definitions: TokenDefinition[]): TokenItem[] {
     if (def.length >= 5 || def.length <= 2) {
       throw new Error(`Unexpected token settings length ${def.length} for "${name}"`);
     } else if (def.length === 4) {
-      if (typeof def[1] !== 'string' || !def[1].startsWith('#')) {
+      if (typeof def[1] !== 'string' || !isColor(def[1])) {
         throw new Error(`Unexpected token color argument "${def[1]}" for "${name}"`);
       }
 
@@ -90,7 +125,7 @@ export function createTokens(definitions: TokenDefinition[]): TokenItem[] {
         throw new Error(`Unexpected token settings argument "${def[1]}" for "${name}"`);
       }
 
-      if (def[1].startsWith('#')) {
+      if (isColor(def[1])) {
         color = def[1] as Color;
       } else {
         fontStyle = def[1] as FontStyle;
@@ -109,6 +144,7 @@ export function createTokens(definitions: TokenDefinition[]): TokenItem[] {
   });
 }
 
+// Saves theme as a JSON file with specified name inside themes/ directory
 export function saveTheme(theme: Theme, filename: string) {
   const outputPath = path.join(__dirname, '../themes/', filename);
   const data = JSON.stringify(theme, null, 2);  

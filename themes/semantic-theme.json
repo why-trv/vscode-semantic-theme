@@ -2,13 +2,29 @@
   "name": "Semantic Theme",
   "semanticHighlighting": true,
   "colors": {
-    "editor.background": "#1e1e1e",
+    "editor.background": "#1d1d1d",
     "editor.foreground": "#c4c4c4",
     "activityBarBadge.background": "#007acc",
     "sideBarTitle.foreground": "#bbbbbb"
   },
   "semanticTokenColors": {
-    "namespace": "#ccb87a"
+    "namespace": "#ccb87a",
+    "macro": "#3da779",
+    "typeParameter": {
+      "italic": true
+    },
+    "function.static": {
+      "italic": true
+    },
+    "class.declaration": {
+      "fontStyle": "bold"
+    },
+    "class.definition": {
+      "fontStyle": "bold"
+    },
+    "class.constructorOrDestructor": "#61AFEF",
+    "type.defaultLibrary": "#C681E1",
+    "class.deduced": "#C681E1"
   },
   "tokenColors": [
     {
@@ -144,8 +160,7 @@
         "storage.type.built-in"
       ],
       "settings": {
-        "foreground": "#C681E1",
-        "fontStyle": "bold"
+        "foreground": "#C681E1"
       }
     },
     {

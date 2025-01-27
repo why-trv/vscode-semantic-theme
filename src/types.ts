@@ -24,7 +24,13 @@ export interface TokenSettings {
   fontStyle?: FontStyle;
 }
 
-export type SemanticTokenSettings = TokenSettings | Color;
+export type SemanticTokenSettings = Color | {
+  foreground?: Color;
+  fontStyle?: FontStyle;
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;  
+};
 
 export type Scope = string[];
 export type ScopeDefinition = Scope | string;
