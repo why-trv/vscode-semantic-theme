@@ -176,7 +176,8 @@ const theme: Theme = {
       ],
     ],
     [
-      "Class, Struct, Type Declaration", colors.class, "bold",
+      "Class, Struct, Type Declaration", colors.class,
+      // No longer doing "bold" here to avoid member variable type boldening when using clangd
       [
         "entity.name.type.class",
         "entity.name.type.struct",

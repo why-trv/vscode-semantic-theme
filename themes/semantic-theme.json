@@ -197,8 +197,7 @@
         "entity.name.type.typedef"
       ],
       "settings": {
-        "foreground": "#e0b569",
-        "fontStyle": "bold"
+        "foreground": "#e0b569"
       }
     },
     {
