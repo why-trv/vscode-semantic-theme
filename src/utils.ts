@@ -1,6 +1,3 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-
 import type {
   Color, 
   FontStyle,
@@ -9,7 +6,6 @@ import type {
   TokenSettings,
   SemanticTokenSettings,
   SemanticTokenColors,
-  Theme
 } from "./types";
 
 type TokenDefinition = [
@@ -142,12 +138,4 @@ export function createTokens(definitions: TokenDefinition[]): TokenItem[] {
       settings
     };
   });
-}
-
-// Saves theme as a JSON file with specified name inside themes/ directory
-export function saveTheme(theme: Theme, filename: string) {
-  const outputPath = path.join(__dirname, '../themes/', filename);
-  const data = JSON.stringify(theme, null, 2);  
-  fs.writeFileSync(outputPath, data);
-  console.log(`Theme file generated at: ${outputPath}`);
 }

@@ -45,6 +45,10 @@ export interface SemanticTokenColors {
   [key: string]: SemanticTokenSettings;
 }
 
+export interface Palette {
+  [key: string]: Color;
+}
+
 export interface ThemeColors {
   [key: string]: Color;
 }

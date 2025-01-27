@@ -1,8 +1,8 @@
 {
-  "name": "semantic-theme",
-  "displayName": "Semantic Theme",
-  "description": "An attempt at a decently semantic VSCode theme for C++",
-  "version": "0.0.2",
+  "name": "lyth-vscode-color-theme",
+  "displayName": "Lyth VS Code Color Theme",
+  "description": "An attempt at a decently semantic VS Code theme for C++",
+  "version": "0.1.1",
   "publisher": "Yuri Turov",
   "icon": "icon.png",
   "engines": {
@@ -14,17 +14,17 @@
   "contributes": {
     "themes": [
       {
-        "label": "Semantic Theme",
+        "label": "Lyth Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/semantic-theme.json"
+        "path": "./themes/lyth-dark.json"
       }
     ]
   },
   "scripts": {
-    "build": "tsc && node .out/theme.js",
-    "watch": "tsc-watch --onSuccess \"node .out/theme.js\"",
+    "build": "tsc && node .tsc/build.js",
+    "watch": "tsc-watch --onSuccess \"node .tsc/build.js\"",
     "preinstall": "npm run build",
-    "install": "tsc && node .out/install.js"
+    "install": "tsc && node .tsc/install.js"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
