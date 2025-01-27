@@ -24,7 +24,8 @@
     },
     "class.constructorOrDestructor": "#61AFEF",
     "type.defaultLibrary": "#C681E1",
-    "class.deduced": "#C681E1"
+    "class.deduced": "#C681E1",
+    "variable.readonly": "#bae3da"
   },
   "tokenColors": [
     {
@@ -46,6 +47,15 @@
       ],
       "settings": {
         "foreground": "#c4c4c4"
+      }
+    },
+    {
+      "name": "Constant Variable",
+      "scope": [
+        "variable.other.constant"
+      ],
+      "settings": {
+        "foreground": "#bae3da"
       }
     },
     {

@@ -26,6 +26,7 @@ const colors: ThemeColors = {
   invalid: "#FF5370",
   tag: "#f07178",
   memberVariable: "#f0787f",
+  constantVariable: "#bae3da",
   argument: "#cacaca",
   tsPrimitive: "#3da779"
 };
@@ -52,7 +53,8 @@ const theme: Theme = {
     "class.definition": "bold",
     "class.constructorOrDestructor": colors.function,
     "type.defaultLibrary": colors.keyword,
-    "class.deduced": colors.keyword
+    "class.deduced": colors.keyword,
+    "variable.readonly": colors.constantVariable
   }),
   tokenColors: createTokens([
     [
@@ -69,6 +71,12 @@ const theme: Theme = {
         "string constant.other.placeholder"
       ]
     ],
+    [
+      "Constant Variable", colors.constantVariable,
+      [
+        "variable.other.constant"
+      ]
+    ],    
     [
       "Colors", colors.altForeground,
       [
