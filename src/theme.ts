@@ -26,7 +26,7 @@ const colors: ThemeColors = {
   invalid: "#FF5370",
   tag: "#f07178",
   memberVariable: "#f0787f",
-  constantVariable: "#bae3da",
+  constantVariable: "#ffb4b9",
   argument: "#cacaca",
   tsPrimitive: "#3da779"
 };

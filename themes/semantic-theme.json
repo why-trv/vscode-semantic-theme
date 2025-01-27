@@ -25,7 +25,7 @@
     "class.constructorOrDestructor": "#61AFEF",
     "type.defaultLibrary": "#C681E1",
     "class.deduced": "#C681E1",
-    "variable.readonly": "#bae3da"
+    "variable.readonly": "#ffb4b9"
   },
   "tokenColors": [
     {
@@ -55,7 +55,7 @@
         "variable.other.constant"
       ],
       "settings": {
-        "foreground": "#bae3da"
+        "foreground": "#ffb4b9"
       }
     },
     {
